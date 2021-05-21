@@ -29,12 +29,12 @@ module test_Act2();
     property dec_assert;
         @(negedge clk) disable iff (reset_tb) 
         if(load)
-            count == load_value
+            $stable(count) |-> count == load_value
         else if(enable) 
             if(dec)
-                $past(count) == count + 'd1
+                $stable(count) |-> $past(count) == count + 'd1
             else 
-                $past(count) == count - 'd1
+                $stable(count) |->  $past(count) == count - 'd1
         else 
             (~enable & ~load) |-> $past(count) == count;
     endproperty 
