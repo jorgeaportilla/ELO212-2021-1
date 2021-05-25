@@ -97,9 +97,7 @@ module test_Act2();
 //=============================================================
 //    Design Under Test
 //=============================================================  
-    S4_actividad2 #(
-        .N(64)
-    )DUT(
+    S4_actividad2 #(64) DUT (
         .clock(clk),
         .reset(reset),
         .load(load),
