@@ -11,7 +11,7 @@ module test_Act1();
     logic [6:0] Segments;
     logic [3:0] LEDs, flags_ref;
     bit [15:0] data_in, num_ref, num, out_num;
-    bit reset, clk, reset_tb;
+    bit reset, clk;
     int i;
     logic error_code = 'd0;
     logic pass;
@@ -33,7 +33,7 @@ module test_Act1();
 	
     property anodos;
         @(posedge clk) disable iff (reset) 
-        $onehot(~Anodes); 
+	    $onehot(~Anodes[3:0]); 
     endproperty 
 	
 	property flags_assert;
@@ -53,7 +53,7 @@ module test_Act1();
 	
     assert property(anodos)
     else begin 
-        $error($sformatf("More than 1 display enabled: %08b", Anodes));
+	$error($sformatf("More than 1 display enabled: %04b", Anodes[3:0]));
         error_code = 3'b010;
     end
 	
@@ -90,11 +90,6 @@ module test_Act1();
 		end
 	end
 	
-	initial begin 
-	   reset_tb = 'd1;
-	   #23
-	   reset_tb = 'd0;
-	end
 //=============================================================
 //    PASS or FAIL layer
 //=============================================================
