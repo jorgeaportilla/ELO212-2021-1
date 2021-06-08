@@ -59,7 +59,7 @@ module test_Act1();
 	
     assert property (displayed_num)
 	else begin
-		error_code = 'd010;
+		error_code = 'd011;
 		$error("incorrect value in display");
 	end
 	
