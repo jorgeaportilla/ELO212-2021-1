@@ -38,18 +38,8 @@ module ALU_reg_ref#(
                 OpCode <= data_in[1:0];
        end     
     end
+    
 
-    
-    
-    S4_actividad1 mod1
-    (
-        .clock(clk), .reset(reset),  
-        .BCD_in(Result),      
-        
-        .segments(Segments),    
-        .anodos(Anodes)       
-    );
-    
     logic Neg, Z, C, V;
     
     always_comb begin
