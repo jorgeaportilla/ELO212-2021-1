@@ -47,7 +47,7 @@ module test_Act1();
 	
     assert property (flags_assert)
 	else begin
-		error_code = 'd001;
+		error_code = 3'b001;
 		$error("incorrect flags");
 	end
 	
@@ -59,7 +59,7 @@ module test_Act1();
 	
     assert property (displayed_num)
 	else begin
-		error_code = 'd011;
+		error_code = 3'b011;
 		$error("incorrect value in display");
 	end
 	
