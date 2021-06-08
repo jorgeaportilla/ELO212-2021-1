@@ -7,7 +7,7 @@ module test_Act1();
 // Signal Definition
 //=============================================================
     bit [3:0] registros;
-    logic [3:0] Anodes;
+    logic [8:0] Anodes;
     logic [6:0] Segments;
     logic [3:0] LEDs, flags_ref;
     bit [15:0] data_in, num_ref, num, out_num;
@@ -130,7 +130,7 @@ module test_Act1();
         .data_in(data_in),
         
         .Segments(Segments),
-        .Anodes(Anodes),
+	.Anodes(Anodes[3:0]),
         .LEDs(LEDs)
         
     );
@@ -162,7 +162,7 @@ module test_Act1();
         
         .dec(1'b0),
         .segments(Segments),
-        .anodes(Anodes),
+	    .anodes(Anodes[3:0]),
         
         .displayed_num(out_num)
     );
