@@ -7,7 +7,9 @@ module test_Act1();
 // Signal Definition
 //=============================================================
     bit [3:0] registros;
-    logic [8:0] Anodes;
+    logic [3:0] Anodes;
+    logic [8:0] Anodes_aux;
+    assign Anodes = Anodes_aux[3:0];
     logic [6:0] Segments;
     logic [3:0] LEDs, flags_ref;
     bit [15:0] data_in, num_ref, num, out_num;
@@ -33,7 +35,7 @@ module test_Act1();
 	
     property anodos;
         @(posedge clk) disable iff (reset) 
-	    $onehot(~Anodes[3:0]); 
+	    $onehot(~Anodes); 
     endproperty 
 	
 	property flags_assert;
@@ -53,7 +55,7 @@ module test_Act1();
 	
     assert property(anodos)
     else begin 
-	$error($sformatf("More than 1 display enabled: %04b", Anodes[3:0]));
+	$error($sformatf("More than 1 display enabled: %04b", Anodes));
         error_code = 3'b010;
     end
 	
@@ -125,7 +127,7 @@ module test_Act1();
         .data_in(data_in),
         
         .Segments(Segments),
-	.Anodes(Anodes[3:0]),
+	.Anodes(Anodes_aux),
         .LEDs(LEDs)
         
     );
@@ -157,7 +159,7 @@ module test_Act1();
         
         .dec(1'b0),
         .segments(Segments),
-	    .anodes(Anodes[3:0]),
+	    .anodes(Anodes),
         
         .displayed_num(out_num)
     );
